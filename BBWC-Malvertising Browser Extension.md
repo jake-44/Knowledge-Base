@@ -8,9 +8,9 @@ Please note that there is A LOT of data to look at in these cases from persisten
 
 1.	Most instances will be show tactics of two activities.
 
-- Powershell download cradle
+ - Powershell download cradle
 
-- New scheduled task created through powershell
+ - New scheduled task created through powershell
 
 2.	The parent process is msiexec.exe and the child process is PowerShell which indicates some kind of installation is occurring.
 
@@ -24,8 +24,8 @@ After expanding the process tree, you will see numerous amounts of PowerShell sc
 **Please note that the malicious downloaded file will be different from case to case. The malicious domains will be different as well.**
 
 4. We can observe that this installation is originating from the internet by looking at the command msiexec spawning from chrome.exe
-- The downloaded file in this case is a “setup” file look-a-like for no specific program, which lands in the user’s “\Downloads” directory noted below:
-- 
+ - The downloaded file in this case is a “setup” file look-a-like for no specific program, which lands in the user’s “\Downloads” directory noted below:
+ 
   **"C:\Windows\System32\msiexec.exe" /i "C:\Users\[redacted]\Downloads\Setup_40552697.msi"**
   
   _It is recommended that during investigation, these .msi files are opened within the sandbox to conduct further
@@ -35,14 +35,14 @@ After identifying the suspicious file that was downloaded, we still don’t unde
 
 5. We can continue to follow the process tree to the next event which takes us to our first .tmp file that appears to be spawning chrome.exe **(Reaching out to the internet)**
 
-- The command line observed in the temp file is reaching out to the domain **malicious1[.]com/ext/ruftyp/40552797** which when accessed in the sandbox, redirects the user to **malicious2[.]com/ext/ruftyp/40552697** then downloads a randomly named executable, finally landing on the page **malicious3[.]cloudfront.net/exeflow/thankyou/download.html** **[edited]**
+ - The command line observed in the temp file is reaching out to the domain **malicious1[.]com/ext/ruftyp/40552797** which when accessed in the sandbox, redirects the user to **malicious2[.]com/ext/ruftyp/40552697** then downloads a randomly named executable, finally landing on the page **malicious3[.]cloudfront.net/exeflow/thankyou/download.html** **[edited]**
  
 _This is clearly NOT good given that the domains are not registered and cannot be associated with a legitimate organization._
 
 6. After sifting through the msexec.exe files, you will find two that have the command line below and each spawn a temp file.
 
-- **"C:\Windows\system32\msiexec.exe" /i "C:\Users\[redacted]\AppData\Roaming\Eclipse Media Inc\Installer   Assistant\prerequisites\WCSetup_ExeWC.msi" /q**
-- The temp files include the below commands:
+ - **"C:\Windows\system32\msiexec.exe" /i "C:\Users\[redacted]\AppData\Roaming\Eclipse Media Inc\Installer   Assistant\prerequisites\WCSetup_ExeWC.msi" /q**
+ - The temp files include the below commands:
 
 **"C:\Windows\Installer\MSID762.tmp" /DontWait /HideWindow /dir "C:\Users\[redacted]\AppData\Roaming\BBWC\" C:\Windows\SysWOW64\WindowsPowerShell\v1.0\powershell.exe -noninteractive -ExecutionPolicy bypass -c "$w="$env:APPDATA"+'/BBWC/'; [Reflection.Assembly]::Load([System.IO.File]::ReadAllBytes($w+'WebCompanion.dll'));[WebCompanion.StartUp]::Start()"**
 
@@ -70,4 +70,4 @@ To confirm your findings, remote into the host in question and navigate to C:\Us
 
 
 <h1> References </h1>
-- https://www.joesandbox.com/analysis/627595/0/html
+ - https://www.joesandbox.com/analysis/627595/0/html
