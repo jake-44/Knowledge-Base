@@ -38,3 +38,7 @@ The GTSC security researchers have also provided some Indicators of Compromise (
 - https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-41082 - Server Remote Code Execution Vulnerability 
 - https://www.bleepingcomputer.com/news/security/rackspace-confirms-outage-was-caused-by-ransomware-attack/ - Rackspace Incident Report
 - https://www.bleepingcomputer.com/news/technology/rackspace-ongoing-exchange-outage-caused-by-security-incident/ - Rackspace Initial Report
+- https://msrc-blog.microsoft.com/2022/09/29/customer-guidance-for-reported-zero-day-vulnerabilities-in-microsoft-exchange-- server/ - Microsoft Zero-Day Report and Mitigation
+- https://borncity.com/win/2022/09/30/exchange-server-werden-ber-0-day-exploit-angegriffen-29-sept-2022/ - Common IOCs
+- https://www.virsec.com/blog/proxynotshell-a-zero-day-microsoft-exchange-exploit - Kill Chain
+
